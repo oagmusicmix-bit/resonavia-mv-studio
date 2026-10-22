@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#10111a">
-<title>RESONAVIA MV Studio — v1.9.84</title>
+<title>RESONAVIA MV Studio — v1.9.90</title>
 <style>
 :root{color-scheme:dark;--bg:#10111a;--panel:#191b28;--line:#303347;--text:#f3f2fb;--muted:#a9abc0;--accent:#b9a4ff;--accent2:#78dce8}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#20213a 0,#10111a 55%);color:var(--text);font:15px/1.45 system-ui,-apple-system,"Noto Sans JP",sans-serif}
+*{box-sizing:border-box}html,body{overscroll-behavior-y:contain}body{margin:0;background:radial-gradient(ellipse at top,#20213a 0,#10111a 55%);color:var(--text);font:15px/1.45 system-ui,-apple-system,"Noto Sans JP",sans-serif}
 header{padding:20px 16px 12px;max-width:1000px;margin:auto}h1{font-size:22px;margin:0 0 4px;letter-spacing:.3px}header p{margin:0;color:var(--muted);font-size:13px}
 main{max-width:1000px;margin:auto;padding:8px 12px 28px;display:grid;gap:12px}
 .panel{background:rgba(25,27,40,.94);border:1px solid var(--line);border-radius:16px;padding:14px;min-width:0}
@@ -51,7 +51,7 @@ canvas{width:min(100%,520px);height:auto;aspect-ratio:9/16;background:#05060a;bo
 </style>
 <link rel="manifest" href="./manifest.webmanifest"><meta name="theme-color" content="#171824"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"></head>
 <body>
-<header><h1>RESONAVIA MV Studio <span style="color:#b9a4ff">1.9.84</span></h1><p>画像ごとの表示時間＋一定のズーム速度＋拡大テキスト演出</p></header>
+<header><h1>RESONAVIA MV Studio <span style="color:#b9a4ff">1.9.90</span></h1><p>画像ごとの表示時間＋一定のズーム速度＋拡大テキスト演出</p></header>
 <main>
 <section class="panel">
 <h2>01 — 素材を読み込む（複数画像対応）</h2>
@@ -171,6 +171,10 @@ RESONAVIA" style="width:100%;padding:10px;background:#11131d;border:1px solid va
 </div>
 <div style="margin-top:14px"><label for="speed">動きの強さ <span id="speedValue" class="value">70%</span></label><input id="speed" type="range" min="0" max="100" value="70"><div class="small">ズームの進み方を全画像で統一する強さです。短い画像は拡大量も小さくなります。</div></div>
 <div style="margin-top:12px"><label for="selectedImage">選択画像の表示時間（秒）</label><input id="selectedImage" type="number" min="1" max="600" value="5"><div class="small">画像を選んで秒数を設定。変更すると後ろの画像の開始時刻も更新されます。</div></div>
+<div class="grid" style="margin-top:10px">
+ <div><label for="imageStartTime">表示開始（分:秒.小数1桁）</label><input id="imageStartTime" type="text" inputmode="decimal" value="00:00.0" placeholder="00:00.0"></div>
+ <div><label for="imageEndTime">表示終了（分:秒.小数1桁）</label><input id="imageEndTime" type="text" inputmode="decimal" value="00:05.0" placeholder="00:05.0"></div>
+</div><div class="small">画像を選択して開始・終了時刻を直接編集できます。表示秒数は自動計算されます。</div>
 <div style="margin-top:12px"><p class="small" style="margin-bottom:8px">画像の順番</p><div id="timeline" class="thumbstrip"></div></div>
 <div class="row" style="margin-top:8px;gap:8px">
 <button type="button" id="moveImageUp" disabled>↑ 前へ</button>
@@ -280,7 +284,7 @@ RESONAVIA" style="width:100%;padding:10px;background:#11131d;border:1px solid va
 </section>
 <section class="panel wide">
 <h2>試作品について</h2>
-<p class="small">v1.9.84：PWA対応準備、自動保存データのHTML要素除外を追加。9:16・16:9・1:1の動画比率切り替えを追加。プレビューと通常／高速書き出しの解像度を連動。v1.9.78の全歌詞の位置・文字色・フォント・サイズ・縁取り・影・光彩を一括適用する機能を継承。高速書き出し（WebCodecs＋WebM結合）を実験モードとして追加。通常書き出しは保持。従来の複数外部フォントのライブラリ、プレビュー、保存・復元、個別削除を追加、編集データの保存・復元、これまでの画像ごとの表示時間、クロスフェード、ズーム演出、複数行テキスト、外部フォント読み込み、LRC読み込み、テキストのドラッグ配置と方向ボタンによる微調整を備えた試作版です。動画書き出しは端末・ブラウザの対応形式やメモリ容量に左右されます。選択した動画比率と解像度により端末への負荷が変わる場合があります。</p>
+<p class="small">v1.9.87：歌詞タイミング編集の分:秒表示統一と後続行の一括シフトを追加。自動保存・復元の改善を継承。PWA対応準備、自動保存データのHTML要素除外を追加。9:16・16:9・1:1の動画比率切り替えを追加。プレビューと通常／高速書き出しの解像度を連動。v1.9.78の全歌詞の位置・文字色・フォント・サイズ・縁取り・影・光彩を一括適用する機能を継承。高速書き出し（WebCodecs＋WebM結合）を実験モードとして追加。通常書き出しは保持。従来の複数外部フォントのライブラリ、プレビュー、保存・復元、個別削除を追加、編集データの保存・復元、これまでの画像ごとの表示時間、クロスフェード、ズーム演出、複数行テキスト、外部フォント読み込み、LRC読み込み、テキストのドラッグ配置と方向ボタンによる微調整を備えた試作版です。動画書き出しは端末・ブラウザの対応形式やメモリ容量に左右されます。選択した動画比率と解像度により端末への負荷が変わる場合があります。</p>
 </section>
 </main>
 <audio id="audioEl" preload="auto"></audio>
@@ -288,7 +292,7 @@ RESONAVIA" style="width:100%;padding:10px;background:#11131d;border:1px solid va
 const $=id=>document.getElementById(id);
 const canvas=$('canvas'),ctx=canvas.getContext('2d',{alpha:false});
 ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality='high';
-let imgs=[],urls=[],audioUrl='',selected=0,playing=false,raf=0,start=0,elapsed=0,segments=[],audioCtx=null,sourceNode=null,externalFontFamily='',draggingText=false;
+let imgs=[],urls=[],audioUrl='',audioDisplayName='',selected=0,playing=false,raf=0,start=0,elapsed=0,segments=[],audioCtx=null,sourceNode=null,externalFontFamily='',draggingText=false;
 // Keep the selected external font in IndexedDB so it survives page reloads.
 const FONT_DB_NAME='RESONAVIA_MV_Studio_Fonts',FONT_STORE='savedFonts',FONT_KEY='activeFont';
 let savedFontRecords=[],loadedFontFamilies={},activeFontId='';
@@ -354,6 +358,11 @@ function parseTimeField(id,fallback=0){const raw=String($(id).value||'').trim();
 function normalizeTimeField(id){const n=parseTimeField(id,id==='textEnd'?5:0);$(id).value=fmtTextTime(n);return n}
 function adjustTimeField(id,delta){const n=roundTenth(Math.max(0,Math.min(3600,parseTimeField(id,id==='textEnd'?5:0)+delta)));$(id).value=fmtTextTime(n);$(id).dispatchEvent(new Event('input',{bubbles:true}))}
 function setStatus(id,msg){$(id).textContent=msg}
+function updateAssetStatus(){
+ const audioLabel=audioUrl?(audioDisplayName||$('audio')?.files?.[0]?.name||'音源読み込み済み'):'音源：未読み込み';
+ const imageLabel=imgs.length?`画像：${imgs.length}枚`:'画像：未読み込み';
+ setStatus('assetStatus',`${audioLabel} ／ ${imageLabel}`);
+}
 function setImages(files){
  urls.forEach(URL.revokeObjectURL);urls=[];imgs=[];selected=0;
  [...files].filter(f=>f.type.startsWith('image/')).forEach((f,i)=>{
@@ -361,7 +370,8 @@ function setImages(files){
  });
  renderImageThumbs();
  makeSegments();draw(0);
- setStatus('assetStatus',`${imgs.length}枚の画像を読み込みました。画像をタップして選択できます。`);
+ updateAssetStatus();
+ if(imgs.length)setStatus('assetStatus',`${audioUrl?(audioDisplayName||'音源読み込み済み'):'音源：未読み込み'} ／ 画像：${imgs.length}枚読み込み済み。画像をタップして選択できます。`);
 }
 function renderImageThumbs(){
  const strip=$('thumbstrip'),tl=$('timeline');strip.innerHTML='';tl.innerHTML='';
@@ -380,7 +390,7 @@ function refreshThumbs(){
  updateImageOrderControls();
 }
 function selectImage(i){
- selected=i;refreshThumbs();if(imgs[i])$('selectedImage').value=imgs[i].duration;
+ selected=i;refreshThumbs();if(imgs[i]){$('selectedImage').value=imgs[i].duration;const seg=segments.find(x=>x.index===i);$('imageStartTime').value=fmtTextTime(seg?seg.start:0);$('imageEndTime').value=fmtTextTime(seg?seg.end:(seg?seg.end:Math.max(0,Number(imgs[i].duration)||5)));}
  setStatus('editStatus',imgs[i]?`選択中：${imgs[i].name}（${fmt(segments.find(s=>s.index===i)?.start||0)}開始）`:'画像を選択してください');
 }
 function updateImageOrderControls(){
@@ -406,13 +416,18 @@ function makeSegments(){
  if(!imgs.length){segments=[];updateLastInfo();return}
  const duration=Math.max(0.1,total());
  let cursor=0;segments=[];
+ // The thumbnail strip is the authoritative image order. Treat each image's
+ // duration as its length and rebuild a contiguous timeline in that order.
+ // Saved start/end values are derived values and may be stale after JSON restore.
  imgs.forEach((item,i)=>{
    const isLast=i===imgs.length-1;
-   let d;
-   if(isLast && $('lastUntilEnd').checked){d=Math.max(0.1,duration-cursor)}
-   else d=Math.max(1,Number(item.duration)||5);
-   const start=cursor, end=Math.min(duration,cursor+d);
-   if(start<duration)segments.push({index:i,start,end,duration:end-start});
+   const savedDuration=Number(item.duration);
+   const length=Math.max(0.1,Math.min(600,Number.isFinite(savedDuration)&&savedDuration>0?savedDuration:5));
+   const start=cursor;
+   let end=start+length;
+   if(isLast && $('lastUntilEnd').checked && duration>start)end=duration;
+   item.startTime=start;item.endTime=end;item.duration=roundTenth(end-start);
+   if(start<duration)segments.push({index:i,start,end:Math.min(duration,end),duration:Math.min(duration,end)-start});
    cursor=end;
  });
  updateLastInfo();
@@ -423,9 +438,15 @@ function updateLastInfo(){
  let start=0;
  for(let i=0;i<imgs.length-1;i++) start+=Math.max(1,Number(imgs[i].duration)||5);
  const end=total();
- el.textContent=$('lastUntilEnd').checked
-  ? `最後の画像：${fmt(start)} から ${fmt(end)} まで（約${Math.max(0,end-start).toFixed(1)}秒）。前の画像の表示時間の合計で開始時刻が決まります。`
-  : '最後の画像も、上の表示秒数で設定します。曲の長さを超える部分は表示されません。';
+ if($('lastUntilEnd').checked){
+  if(start>=end){
+   el.textContent=`最後の画像の開始予定は ${fmt(start)} ですが、現在のプレビュー長は ${fmt(end)} です。音源を読み込むか、曲の長さ設定を確認してください。前の画像の表示時間合計がプレビュー長を超えています。`;
+  }else{
+   el.textContent=`最後の画像：${fmt(start)} から ${fmt(end)} まで（約${(end-start).toFixed(1)}秒）。前の画像の表示時間の合計で開始時刻が決まります。`;
+  }
+ }else{
+  el.textContent='最後の画像も、上の表示秒数で設定します。曲の長さを超える部分は表示されません。';
+ }
 }
 function currentSegment(t){if(!segments.length)return null;return segments.find(s=>t>=s.start&&t<s.end)||segments[segments.length-1]}
 function draw(t){
@@ -622,21 +643,22 @@ function renderPreviewLyricsNav(){
     target.text=textInput.value;$('overlayText').value=target.text;t.textContent=target.text||'(空欄)';draw(elapsed);
    };
    textLabel.append(textInput);
-   const startLabel=document.createElement('label');startLabel.textContent='開始（秒）';
-   const startInput=document.createElement('input');startInput.type='number';startInput.min='0';startInput.max='3600';startInput.step='0.1';startInput.value=Number(it.start).toFixed(1);startInput.setAttribute('aria-label','歌詞の開始秒数');
+   const startLabel=document.createElement('label');startLabel.textContent='開始（分:秒）';
+   const startInput=document.createElement('input');startInput.type='text';startInput.inputMode='decimal';startInput.value=fmtTextTime(it.start);startInput.setAttribute('aria-label','歌詞の開始時間（分:秒）');
    startInput.onchange=()=>{
     const target=textItems.find(x=>x.id===it.id);if(!target)return;
-    const n=roundTenth(Math.max(0,Math.min(3600,Number(startInput.value)||0)));
+    const n=parseDisplayTime(startInput.value,target.start);
     target.start=n;if(target.end<=n)target.end=roundTenth(n+0.1);
+    shiftFollowingLyrics(target);
     loadEditorItem(target);renderTextItemsKeepLyricsScroll();draw(elapsed);
    };
    startLabel.append(startInput);
-   const endLabel=document.createElement('label');endLabel.textContent='終了（秒）';
-   const endInput=document.createElement('input');endInput.type='number';endInput.min='0.1';endInput.max='3600';endInput.step='0.1';endInput.value=Number(it.end).toFixed(1);endInput.setAttribute('aria-label','歌詞の終了秒数');
+   const endLabel=document.createElement('label');endLabel.textContent='終了（分:秒）';
+   const endInput=document.createElement('input');endInput.type='text';endInput.inputMode='decimal';endInput.value=fmtTextTime(it.end);endInput.setAttribute('aria-label','歌詞の終了時間（分:秒）');
    endInput.onchange=()=>{
     const target=textItems.find(x=>x.id===it.id);if(!target)return;
-    const n=roundTenth(Math.max(roundTenth(target.start+0.1),Math.min(3600,Number(endInput.value)||target.start+0.1)));
-    target.end=n;loadEditorItem(target);renderTextItemsKeepLyricsScroll();draw(elapsed);
+    const n=roundTenth(Math.max(roundTenth(target.start+0.1),parseDisplayTime(endInput.value,target.end)));
+    target.end=n;shiftFollowingLyrics(target);loadEditorItem(target);renderTextItemsKeepLyricsScroll();draw(elapsed);
    };
    endLabel.append(endInput);
    const hint=document.createElement('div');hint.className='lyric-edit-hint';hint.textContent=`${it.sectionName?'セクション：'+it.sectionName:(verse===2?'2番':'1番')}の歌詞。文字の見た目は下の設定から調整できます。`;
@@ -651,10 +673,10 @@ function renderPreviewLyricsNav(){
       textItems=textItems.filter(x=>x.id!==it.id);
       if(selectedTextId===it.id){selectedTextId=textItems.find(x=>x.lyricImported)?.id||null;const next=textItems.find(x=>x.id===selectedTextId);if(next)loadEditorItem(next)}
      } else if(field==='start'){
-      target.start=roundTenth(Math.max(0,target.start+delta));if(target.start>=target.end)target.end=roundTenth(target.start+0.1);
+      target.start=roundTenth(Math.max(0,target.start+delta));if(target.start>=target.end)target.end=roundTenth(target.start+0.1);shiftFollowingLyrics(target);
       $('textStart').value=fmtTextTime(target.start);$('textEnd').value=fmtTextTime(target.end);
      } else {
-      target.end=roundTenth(Math.max(target.start+0.1,target.end+delta));
+      target.end=roundTenth(Math.max(target.start+0.1,target.end+delta));shiftFollowingLyrics(target);
       $('textStart').value=fmtTextTime(target.start);$('textEnd').value=fmtTextTime(target.end);
      }
      renderTextItemsKeepLyricsScroll();elapsed=keepTime;draw(elapsed);updateTime();updateSeekStatus();
@@ -780,6 +802,19 @@ $('markVerse1').onclick=()=>{
  let after=false;textItems.filter(it=>it.lyricImported).forEach(it=>{if(it.id===selected.id)after=true;if(after)it.verse=1;else it.verse=2});
  const keepTime=elapsed;renderTextItemsKeepLyricsScroll();elapsed=keepTime;draw(elapsed);updateTime();updateSeekStatus();$('editStatus').textContent='選択行から後ろを1番にしたよ。';
 };
+function parseDisplayTime(value,fallback=0){
+ const v=String(value??'').trim();
+ if(v.includes(':')){const m=v.match(/^(\\d{1,3}):(\\d{1,2})(?:\\.(\\d))?$/);if(m)return roundTenth(Math.max(0,Math.min(3600,Number(m[1])*60+Number(m[2])+Number('0.'+(m[3]||'0')))))}
+ const n=Number(v);return Number.isFinite(n)?roundTenth(Math.max(0,Math.min(3600,n))):roundTenth(Math.max(0,Number(fallback)||0));
+}
+// When a lyric edit would overlap later lyrics, move every subsequent lyric by the same minimum offset.
+function shiftFollowingLyrics(target){
+ const lyrics=textItems.filter(x=>x&&x.lyricImported).sort((a,b)=>(Number(a.start)||0)-(Number(b.start)||0));
+ const idx=lyrics.findIndex(x=>x.id===target.id);if(idx<0||idx>=lyrics.length-1)return;
+ const next=lyrics[idx+1];const overlap=roundTenth((Number(target.end)||0)-(Number(next.start)||0));
+ if(overlap<=0)return;
+ for(let i=idx+1;i<lyrics.length;i++){lyrics[i].start=roundTenth((Number(lyrics[i].start)||0)+overlap);lyrics[i].end=roundTenth((Number(lyrics[i].end)||0)+overlap)}
+}
 function renderTextItems(){
  const box=$('textItems');
  const manualItems=textItems.filter(it=>!it.lyricImported);
@@ -809,8 +844,8 @@ function renderTextItems(){
    btn.setAttribute('aria-label',`${(it.text||'歌詞').slice(0,20)} ${label}`);
    btn.onclick=()=>{
     const target=textItems.find(x=>x.id===it.id);if(!target)return;
-    if(field==='start'){target.start=roundTenth(Math.max(0,(Number(target.start)||0)+delta));if(target.start>=target.end)target.end=roundTenth(target.start+0.1)}
-    else {target.end=roundTenth(Math.max(roundTenth(target.start+0.1),(Number(target.end)||target.start+0.1)+delta))}
+    if(field==='start'){target.start=roundTenth(Math.max(0,(Number(target.start)||0)+delta));if(target.start>=target.end)target.end=roundTenth(target.start+0.1);shiftFollowingLyrics(target)}
+    else {target.end=roundTenth(Math.max(roundTenth(target.start+0.1),(Number(target.end)||target.start+0.1)+delta));shiftFollowingLyrics(target)}
     if(selectedTextId===target.id)loadEditorItem(target);
     renderTextItems();draw(elapsed);
    };
@@ -916,7 +951,7 @@ $('deleteImportedLyrics').addEventListener('click',()=>{
 
 $('duplicateTextItem').onclick=()=>{if(!selectedTextId){setStatus('editStatus','複製するテキストを先に選んでね。');return}const source=textItems.find(x=>x.id===selectedTextId);if(!source){setStatus('editStatus','複製するテキストが見つからないよ。');return}const copy={...source,id:'text'+(++textItemSeq)};textItems.push(copy);selectedTextId=copy.id;loadEditorItem(copy);renderTextItems();draw(elapsed);setStatus('editStatus','テキストを複製したよ。文字・時間・位置を必要に応じて変更してね。')};
 $('saveTextItem').onclick=()=>{if(!selectedTextId){setStatus('editStatus','先に「＋ テキストを追加」で項目を作ってね。');return}const idx=textItems.findIndex(x=>x.id===selectedTextId);if(idx>=0){textItems[idx]={...readEditorItem(),id:selectedTextId};renderTextItems();draw(elapsed)}};
-$('audio').addEventListener('change',e=>{const f=e.target.files[0];if(!f)return;if(audioUrl)URL.revokeObjectURL(audioUrl);audioUrl=URL.createObjectURL(f);$('audioEl').src=audioUrl;setStatus('assetStatus',`音源：${f.name}（「曲全体に合わせる」を選ぶと音源の長さを使います）`)});
+$('audio').addEventListener('change',e=>{const f=e.target.files&&e.target.files[0];if(audioUrl)URL.revokeObjectURL(audioUrl);audioUrl='';audioDisplayName='';$('audioEl').pause();$('audioEl').removeAttribute('src');$('audioEl').load();if(!f){updateAssetStatus();makeSegments();draw(elapsed);updateTime();return}audioDisplayName=f.name;audioUrl=URL.createObjectURL(f);$('audioEl').src=audioUrl;updateAssetStatus();setStatus('assetStatus',`音源：${f.name} ／ ${imgs.length?`画像：${imgs.length}枚読み込み済み`:'画像：未読み込み'}（「曲全体に合わせる」を選ぶと音源の長さを使います）`)});
 $('audioEl').addEventListener('loadedmetadata',()=>{const opt=[...$('duration').options].find(o=>o.value==='full');if(opt)opt.textContent=`曲全体に合わせる（${fmt($('audioEl').duration)}）`;makeSegments();if($('duration').value==='full'){draw(elapsed);updateTime()} });
 $('images').addEventListener('change',e=>setImages(e.target.files));
 ['overlayText','textPosition','textColor','textStrokeColor','textStrokeWidth','textShadow','textShadowColor','textGlow','textGlowColor','textFade','textFont','textX','textY','textColorMode','textColor2','textColor3'].forEach(id=>$(id).addEventListener('input',()=>{if(id==='textX')$('textXValue').textContent=$('textX').value+'%';if(id==='textY')$('textYValue').textContent=$('textY').value+'%';if(id==='textStrokeWidth')$('textStrokeWidthValue').textContent=$('textStrokeWidth').value;if(id==='textShadow')$('textShadowValue').textContent=$('textShadow').value+'%';if(id==='textGlow')$('textGlowValue').textContent=$('textGlow').value+'%';if(selectedTextId){const idx=textItems.findIndex(x=>x.id===selectedTextId);if(idx>=0)textItems[idx]={...readEditorItem(),id:selectedTextId};renderTextItems()}draw(elapsed)}));
@@ -976,8 +1011,10 @@ $('speed').addEventListener('input',()=>{$('speedValue').textContent=$('speed').
 $('motion').addEventListener('change',()=>draw(elapsed));$('fit').addEventListener('change',()=>draw(elapsed));$('fade').addEventListener('change',()=>draw(elapsed));$('zoomAmount').addEventListener('input',()=>{$('zoomAmountValue').textContent=$('zoomAmount').value+'%';draw(elapsed)});$('panDirection').addEventListener('change',()=>draw(elapsed));$('transition').addEventListener('change',()=>draw(elapsed));$('transitionMode').addEventListener('change',()=>draw(elapsed));
 $('ripple').addEventListener('input',()=>{$('rippleValue').textContent=$('ripple').value+'%';draw(elapsed)});
 $('flicker').addEventListener('input',()=>{$('flickerValue').textContent=$('flicker').value+'%';draw(elapsed)});
-$('auto').onclick=()=>{if(!imgs.length){setStatus('editStatus','先に画像を読み込んでね。');return}const d=Math.max(1,Math.floor(total()/imgs.length));imgs.forEach((im,i)=>{if(i<imgs.length-1 || !$('lastUntilEnd').checked) im.duration=d});makeSegments();draw(0);setStatus('editStatus',`${imgs.length}枚を配置しました。画像をタップして表示時間を調整できます。最後の画像は${$('lastUntilEnd').checked?'曲の最後まで表示します':'設定秒数で表示します'}。`)};
-$('selectedImage').addEventListener('change',()=>{if(!imgs[selected])return;imgs[selected].duration=Math.max(1,Math.min(600,Number($('selectedImage').value)||5));makeSegments();draw(elapsed);refreshThumbs();setStatus('editStatus',`${imgs[selected].name}の表示時間を${imgs[selected].duration}秒に設定しました。`)});
+$('auto').onclick=()=>{if(!imgs.length){setStatus('editStatus','先に画像を読み込んでね。');return}const d=Math.max(1,Math.floor(total()/imgs.length));let cursor=0;imgs.forEach((im,i)=>{im.startTime=cursor;im.duration=d;im.endTime=cursor+d;cursor=im.endTime});makeSegments();selectImage(selected);draw(0);setStatus('editStatus',`${imgs.length}枚を配置しました。画像をタップして表示時間を調整できます。最後の画像は${$('lastUntilEnd').checked?'曲の最後まで表示します':'設定秒数で表示します'}。`)};
+$('selectedImage').addEventListener('change',()=>{if(!imgs[selected])return;const it=imgs[selected];it.duration=Math.max(0.1,Math.min(600,Number($('selectedImage').value)||5));it.endTime=(Number(it.startTime)||0)+it.duration;$('imageEndTime').value=fmtTextTime(it.endTime);makeSegments();selectImage(selected);draw(elapsed);refreshThumbs();setStatus('editStatus',`${it.name}の表示時間を${it.duration}秒に設定しました。`)});
+function applyImageTimeFields(){const it=imgs[selected];if(!it)return;const st=parseTimeField('imageStartTime',Number(it.startTime)||0),en=parseTimeField('imageEndTime',Number(it.endTime)||st+1);if(en<=st){setStatus('editStatus','終了時刻は開始時刻より後にしてね。');return}it.startTime=st;it.endTime=en;it.duration=roundTenth(en-st);$('selectedImage').value=it.duration;makeSegments();draw(elapsed);refreshThumbs();setStatus('editStatus',`${it.name}：${fmtTextTime(st)}〜${fmtTextTime(en)} に設定しました。`)}
+$('imageStartTime').addEventListener('change',applyImageTimeFields);$('imageEndTime').addEventListener('change',applyImageTimeFields);
 $('lastUntilEnd').addEventListener('change',()=>{makeSegments();draw(elapsed);updateTime()});
 $('play').onclick=async()=>{if(!imgs.length){setStatus('editStatus','先に画像を読み込んでね。');return}if(playing){elapsed=currentPreviewTime();playing=false;cancelAnimationFrame(raf);$('audioEl').pause();$('play').textContent='▶ プレビュー再生';updateTime();updateSeekStatus();return}if(elapsed>=total())elapsed=0;start=performance.now()-elapsed*1000;playing=true;makeSegments();if(audioUrl){$('audioEl').currentTime=elapsed;try{await $('audioEl').play();start=performance.now()-elapsed*1000}catch(e){setStatus('editStatus','音源を再生できないため、映像のみでプレビューします。')}}$('play').textContent='❚❚ 一時停止';raf=requestAnimationFrame(tick)};
 $('stop').onclick=stop;
@@ -1146,7 +1183,7 @@ $('saveProject').addEventListener('click',()=>{
    textItems,
    selectedTextId,
    textItemSeq,
-   images:imgs.map(im=>({name:im.name,duration:im.duration})),
+   images:imgs.map(im=>({name:im.name,duration:im.duration,startTime:im.startTime,endTime:im.endTime})),
    note:'音源・画像・外部フォントのファイル本体は含まれません。再読み込み時に選び直してください。'
   };
   const blob=new Blob([JSON.stringify(project,null,2)],{type:'application/json'});
@@ -1172,19 +1209,56 @@ $('loadProjectFile').addEventListener('change',async e=>{
   textItems=project.textItems.filter(it=>it&&typeof it==='object').map((it,i)=>({...it,id:it.id||('text'+(i+1))}));
   selectedTextId=textItems.some(it=>it.id===project.selectedTextId)?project.selectedTextId:(textItems[0]?.id||null);
   textItemSeq=Math.max(Number(project.textItemSeq)||0,...textItems.map(it=>Number(String(it.id).replace(/^text/,''))||0));
-  // Restore image durations when currently loaded files have matching names.
+  // Restore image order and timing from the project. Mobile file pickers may
+  // return multi-selected files in a different order, so match by filename and
+  // move each image together with its object URL to preserve the saved sequence.
   if(Array.isArray(project.images)&&imgs.length){
-   const savedByName=new Map(project.images.map(im=>[im.name,im.duration]));
-   imgs.forEach(im=>{if(savedByName.has(im.name))im.duration=Math.max(1,Math.min(600,Number(savedByName.get(im.name))||5))});
+   const savedByName=new Map();
+   project.images.forEach((saved)=>{
+    if(!saved||typeof saved.name!=='string')return;
+    if(!savedByName.has(saved.name))savedByName.set(saved.name,[]);
+    savedByName.get(saved.name).push(saved);
+   });
+   const loadedByName=new Map();
+   imgs.forEach((im,i)=>{
+    if(!loadedByName.has(im.name))loadedByName.set(im.name,[]);
+    loadedByName.get(im.name).push({im,url:urls[i]});
+   });
+   const orderedImgs=[],orderedUrls=[];
+   project.images.forEach(saved=>{
+    const queue=saved&&loadedByName.get(saved.name);
+    const entry=queue&&queue.shift();
+    if(!entry)return;
+    const timingQueue=savedByName.get(saved.name);
+    const timing=timingQueue&&timingQueue.shift()||saved;
+    entry.im.duration=Math.max(0.1,Math.min(600,Number(timing.duration)||entry.im.duration||5));
+    if(Number.isFinite(timing.startTime))entry.im.startTime=timing.startTime;
+    if(Number.isFinite(timing.endTime))entry.im.endTime=timing.endTime;
+    orderedImgs.push(entry.im);orderedUrls.push(entry.url);
+   });
+   // Keep newly loaded images that were not part of this saved project at the end.
+   loadedByName.forEach(queue=>queue.forEach(entry=>{orderedImgs.push(entry.im);orderedUrls.push(entry.url)}));
+   if(orderedImgs.length){imgs=orderedImgs;urls=orderedUrls;selected=0;renderImageThumbs();}
   }
   if(selectedTextId){const chosen=textItems.find(it=>it.id===selectedTextId);if(chosen)loadEditorItem(chosen)}
-  ['textX','textY','textSize','textStrokeWidth','textShadow','textGlow','zoomAmount'].forEach(id=>{
-   const el=$(id);if(!el)return;
+  // Refresh every restored control's dependent labels and preview handlers.
+  // Range sliders and their numeric labels must be updated together after JSON load.
+  projectControlIds.forEach(id=>{
+   const el=$(id);if(!el||el.type==='file')return;
+   // These controls describe the selected image. Firing their change handlers while
+   // restoring JSON can accidentally apply the saved controls to image #1.
+   if(['selectedImage','imageStartTime','imageEndTime'].includes(id))return;
    el.dispatchEvent(new Event('input',{bubbles:true}));
+   el.dispatchEvent(new Event('change',{bubbles:true}));
+  });
+  ['textX','textY'].forEach(id=>{
+   const el=$(id);if(el){const out=$(id+'Value');if(out)out.textContent=el.value+'%';}
   });
   if(typeof applyAspectRatio==='function'){const ratio=$('aspectRatio')?.value||'9:16';const dims=ratio==='16:9'?[1920,1080]:ratio==='1:1'?[1080,1080]:[1080,1920];canvas.width=dims[0];canvas.height=dims[1];canvas.style.aspectRatio=ratio.replace(':',' / ');canvas.style.width=ratio==='9:16'?'min(100%, 330px)':'min(100%, 520px)';}
-  makeSegments();renderTextItems();renderPreviewLyricsNav();draw(elapsed);updateTime();
-  setStatus('projectStatus',`編集データを読み込みました（${textItems.length}件のテキスト）。音源・画像が未選択の場合は、ファイルを選び直してください。画像表示時間はファイル名が一致したものだけ復元します。`);
+  makeSegments();
+  if(imgs.length){selectImage(Math.min(selected,imgs.length-1));renderImageThumbs();}
+  renderTextItems();renderPreviewLyricsNav();draw(elapsed);updateTime();
+  setStatus('projectStatus',`編集データを読み込みました（${textItems.length}件のテキスト）。保存時の画像順と表示時間を復元しました。音源・画像が未選択の場合は、ファイルを選び直してください。`);
  }catch(err){setStatus('projectStatus','読み込みに失敗しました：'+(err.message||err))}
  finally{e.target.value=''}
 });
@@ -1209,7 +1283,7 @@ refreshFontLibrary().then(async()=>{for(const item of savedFontRecords){await ac
 </script>
 
 <script>
-// v1.9.84: PWA-ready build; autosave sanitizes DOM nodes before IndexedDB storage.
+// v1.9.87: v1.9.87 fixes plus JSON control refresh and clearer last-image duration warnings.
 (()=>{
  const DB='RESONAVIA_MV_Autosave', STORE='drafts', KEY='latest';
  let ready=false, timer=0, saving=false, pending=false, restoring=false;
@@ -1230,15 +1304,15 @@ refreshFontLibrary().then(async()=>{for(const item of savedFontRecords){await ac
   return undefined;
  }
  async function makeDraft(){const images=[];for(let i=0;i<(window.imgs||[]).length;i++){const im=imgs[i];let blob=null;try{if(urls[i]){const r=await fetch(urls[i]);blob=await r.blob()}}catch(e){}images.push({name:im.name||('image_'+i),duration:im.duration||5,blob})}let audioBlob=null;try{if(window.audioUrl){const r=await fetch(audioUrl);audioBlob=await r.blob()}}catch(e){}
- return {format:'RESONAVIA_MV_AUTOSAVE',version:'1.9.84',savedAt:new Date().toISOString(),controls:getControls(),textItems:safeData(window.textItems||[])||[],selectedTextId:window.selectedTextId||null,textItemSeq:window.textItemSeq||0,images,audioBlob,audioName:document.getElementById('audio')?.files?.[0]?.name||null,elapsed:window.elapsed||0};}
+ return {format:'RESONAVIA_MV_AUTOSAVE',version:'1.9.90',savedAt:new Date().toISOString(),controls:getControls(),textItems:safeData(window.textItems||[])||[],selectedTextId:window.selectedTextId||null,textItemSeq:window.textItemSeq||0,images,audioBlob,audioName:document.getElementById('audio')?.files?.[0]?.name||null,elapsed:window.elapsed||0};}
  async function save(){if(!ready||restoring)return;if(saving){pending=true;return}saving=true;status('自動保存中…');try{const draft=await makeDraft();await write(draft);status('自動保存済み：'+new Date(draft.savedAt).toLocaleTimeString('ja-JP')+'（歌詞・設定・読み込み済み素材を保存）')}catch(e){status('自動保存できませんでした。手動の「編集データを保存」も使ってね。保存領域不足の可能性：'+(e.message||e))}finally{saving=false;if(pending){pending=false;save()}}}
  function schedule(){if(!ready||restoring)return;clearTimeout(timer);status('変更を検知：自動保存待機中…');timer=setTimeout(save,900)}
  async function restore(){restoring=true;try{const d=await read();if(!d||d.format!=='RESONAVIA_MV_AUTOSAVE')return;Object.entries(d.controls||{}).forEach(([id,v])=>{const el=document.getElementById(id);if(!el||el.type==='file')return;if(el.type==='checkbox'&&typeof v.checked==='boolean')el.checked=v.checked;else if(v&&'value'in v)el.value=v.value});
  if(Array.isArray(d.textItems)){window.textItems=d.textItems.filter(x=>x&&typeof x==='object');window.selectedTextId=d.selectedTextId||null;window.textItemSeq=Number(d.textItemSeq)||0}
  // Restore cached media into fresh object URLs. This avoids requiring file picker after a page is discarded.
  if(Array.isArray(d.images)&&d.images.some(x=>x.blob instanceof Blob)){urls.forEach(u=>URL.revokeObjectURL(u));urls=[];imgs=[];for(const item of d.images){if(!item.blob)continue;const u=URL.createObjectURL(item.blob),im=new Image();im.src=u;urls.push(u);imgs.push({img:im,name:item.name,duration:item.duration||5});await new Promise(res=>{im.onload=res;im.onerror=res})}if(typeof renderImageThumbs==='function')renderImageThumbs()}
- if(d.audioBlob instanceof Blob){if(audioUrl)URL.revokeObjectURL(audioUrl);audioUrl=URL.createObjectURL(d.audioBlob);const ae=document.getElementById('audioEl');ae.src=audioUrl;await new Promise(res=>{ae.onloadedmetadata=res;ae.onerror=res;setTimeout(res,1200)});const st=document.getElementById('assetStatus');if(st)st.textContent='自動復元：音源と画像を復元しました。'}
- if(typeof makeSegments==='function')makeSegments();if(typeof renderTextItems==='function')renderTextItems();if(typeof renderPreviewLyricsNav==='function')renderPreviewLyricsNav();if(typeof draw==='function')draw(Number(d.elapsed)||0);if(typeof updateTime==='function')updateTime();
+ if(d.audioBlob instanceof Blob){if(audioUrl)URL.revokeObjectURL(audioUrl);audioUrl=URL.createObjectURL(d.audioBlob);audioDisplayName=d.audioName||'自動復元した音源';const ae=document.getElementById('audioEl');ae.src=audioUrl;await new Promise(res=>{ae.onloadedmetadata=res;ae.onerror=res;setTimeout(res,1200)});}
+ if(typeof updateAssetStatus==='function')updateAssetStatus();if(typeof makeSegments==='function')makeSegments();if(typeof renderTextItems==='function')renderTextItems();if(typeof renderPreviewLyricsNav==='function')renderPreviewLyricsNav();if(typeof draw==='function')draw(Number(d.elapsed)||0);if(typeof updateTime==='function')updateTime();
  status('前回の自動保存を復元しました（'+new Date(d.savedAt).toLocaleString('ja-JP')+'）。素材も保存できたものは復元済みです。');
  }catch(e){status('前回データの自動復元に失敗しました。手動保存ファイルがあればそちらを使ってね。')}finally{restoring=false;ready=true}}
  document.addEventListener('input',schedule,true);document.addEventListener('change',schedule,true);document.addEventListener('click',e=>{if(e.target.closest('button'))schedule()},true);
